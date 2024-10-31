@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prosty kalukator</title>
+</head>
+<body>
+    <h1>Prosty kalkulator</h1>
+    <button id="openBtn">Otwórz kalklulator</button>
+
+    <div id="calcModal" style="display:none;">
+        <form id="calcForm">
+            <label for="number1">Pierwszy numer:</label>
+            <input type="text" id="number1"><br><br>
+            <label for="number2">Drugi numer:</label>
+            <input type="text" id="number2"><br><br>
+            <label for="operator">Operator:</label>
+            <select id="operator">
+                <option value="+">+</option>
+                <option value="-">-</option>
+                <option value="*">*</option>
+                <option value="/">/</option>
+            </select><br><br>
+            <input type="button" value="Oblicz" onclick="calculate()">
+        </form>
+        <p id="result"></p>
+        <button onclick="closeModal()">Zamknij</button>
+    </div>
+
+    <script>
+        function calculate() {
+            const number1 = parseFloat(document.getElementById('number1').value);
+            const number2 = parseFloat(document.getElementById('number2').value);
+            const operator = document.getElementById('operator').value;
+            let result;
+
+            if (operator === '+') {
+                result = number1 + number2;
+            } else if (operator === '-') {
+                result = number1 - number2;
+            } else if (operator === '*') {
+                result = number1 * number2;
+            } else if (operator === '/') {
+                result = number1 / number2;
+            } else {
+                result = 'Invalid operator';
+            }
+
+            document.getElementById('result').innerText = `${number1} ${operator} ${number2} = ${result}`;
+        }
+
+        document.getElementById('openBtn').onclick = function() {
+            document.getElementById('calcModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('calcModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
